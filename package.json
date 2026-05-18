@@ -1,0 +1,107 @@
+{
+  "name": "json-dump",
+  "publisher": "EdgeInformation",
+  "displayName": "JSON Dump",
+  "description": "Inspect JSON selections and files in an interactive cfdump-style webview",
+  "author": {
+    "name": "EdgeInformation"
+  },
+  "version": "0.0.2",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#17324d",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "json",
+    "dump",
+    "inspector",
+    "viewer",
+    "tree",
+    "cfdump",
+    "webview"
+  ],
+  "markdown": "github",
+  "pricing": "Free",
+  "activationEvents": [
+    "onCommand:jsonDump.showDump",
+    "onCommand:jsonDump.sortAlpha",
+    "onCommand:jsonDump.sortNatural"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jsonDump.showDump",
+        "title": "JSON Dump"
+      },
+      {
+        "command": "jsonDump.sortAlpha",
+        "title": "Sort Keys A→Z",
+        "icon": "$(sort-precedence)"
+      },
+      {
+        "command": "jsonDump.sortNatural",
+        "title": "Natural Key Order",
+        "icon": "$(list-unordered)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "jsonDump.sortAlpha",
+          "when": "activeWebviewPanelId == jsonDump && !jsonDump.isSortedAlpha",
+          "group": "navigation"
+        },
+        {
+          "command": "jsonDump.sortNatural",
+          "when": "activeWebviewPanelId == jsonDump && jsonDump.isSortedAlpha",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "jsonDump.showDump",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "jsonDump.showDump",
+          "when": "resourceExtname == .json",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "jsonDump.showDump",
+          "when": "resourceExtname == .json",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.1",
+    "typescript": "^5.3.0"
+  }
+}

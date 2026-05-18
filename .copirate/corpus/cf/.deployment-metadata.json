@@ -1,0 +1,66 @@
+{
+  "version": "1.32.6",
+  "updatedAt": "2026-05-18T21:56:53.327Z",
+  "files": {
+    "caching-pairs.jsonl": {
+      "templateHash": "0e9ce9bf82525d304e47cdaf70726dc852652794e5e12235d09060cfa9e398b8",
+      "deployedHash": "0e9ce9bf82525d304e47cdaf70726dc852652794e5e12235d09060cfa9e398b8",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.312Z"
+    },
+    "corrections.jsonl": {
+      "templateHash": "664200314ae73b658d75abea326de96bbe05721a124ba955186cb82801ac8828",
+      "deployedHash": "664200314ae73b658d75abea326de96bbe05721a124ba955186cb82801ac8828",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T20:44:19.580Z"
+    },
+    "error-handling-pairs.jsonl": {
+      "templateHash": "2ca210ceb240e03290285009f90c59a9b49e6e723608b69bbdad032ef9df3d46",
+      "deployedHash": "2ca210ceb240e03290285009f90c59a9b49e6e723608b69bbdad032ef9df3d46",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.314Z"
+    },
+    "fw1-pairs.jsonl": {
+      "templateHash": "f85415794f2ac8d52837a3849824234201aab199b9e5aed3df8d49e9c78852ac",
+      "deployedHash": "f85415794f2ac8d52837a3849824234201aab199b9e5aed3df8d49e9c78852ac",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.316Z"
+    },
+    "idiom-pairs.jsonl": {
+      "templateHash": "dd06ded9841549133716190112e493e0da9c956da8deb37dfe5f271bc5e4c2e7",
+      "deployedHash": "dd06ded9841549133716190112e493e0da9c956da8deb37dfe5f271bc5e4c2e7",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.318Z"
+    },
+    "repository-pairs.jsonl": {
+      "templateHash": "be92a86c7ffb438d63ac22a64bc9a55b75fb4459cfdde79a88c5c426f6a7fb5b",
+      "deployedHash": "be92a86c7ffb438d63ac22a64bc9a55b75fb4459cfdde79a88c5c426f6a7fb5b",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.321Z"
+    },
+    "security-pairs.jsonl": {
+      "templateHash": "eb73e5db4bcb82a8eb4590edf6b8e90a0e112443d6831ff9a32aff43d7608ca5",
+      "deployedHash": "eb73e5db4bcb82a8eb4590edf6b8e90a0e112443d6831ff9a32aff43d7608ca5",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.323Z"
+    },
+    "service-layer-pairs.jsonl": {
+      "templateHash": "3031c09faf2d32ce49e4e61bcac33ffdade3b2725f450f2c8d0d58d7f68b51d0",
+      "deployedHash": "3031c09faf2d32ce49e4e61bcac33ffdade3b2725f450f2c8d0d58d7f68b51d0",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.323Z"
+    },
+    "transactions-pairs.jsonl": {
+      "templateHash": "aaea66fe201fe59594380068ffee3c554b4c51db31476a1ab28ae128021575f4",
+      "deployedHash": "aaea66fe201fe59594380068ffee3c554b4c51db31476a1ab28ae128021575f4",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.325Z"
+    },
+    "validation-pairs.jsonl": {
+      "templateHash": "d3aed534b491bbb2bc967d22d52314f00047cf8dd96aa608e5d5b1e1384ba400",
+      "deployedHash": "d3aed534b491bbb2bc967d22d52314f00047cf8dd96aa608e5d5b1e1384ba400",
+      "version": "1.32.6",
+      "updatedAt": "2026-05-18T21:56:53.327Z"
+    }
+  }
+}

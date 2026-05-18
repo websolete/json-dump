@@ -1,0 +1,25 @@
+{
+  "workspacePath": "d:\\Inetpub\\vscode_extensions\\json-dump",
+  "workspaceId": "72d95321ff6ae159",
+  "windowInstanceId": "e93da5a8-9278-4535-8a2c-a6fd09b50702",
+  "bindAddress": "127.0.0.1",
+  "port": 43103,
+  "token": "048f728caef299133a701931ba4c8bfd",
+  "baseUrl": "http://127.0.0.1:43103/copirate/hooks/v1",
+  "startedAt": "2026-05-18T21:56:53.364Z",
+  "status": "ready",
+  "routeVersions": {
+    "health": "v1",
+    "capabilities": "v1",
+    "preCompact": "v1",
+    "subagentStart": "v1",
+    "preToolUse": "v1",
+    "postToolUse": "v1"
+  },
+  "enabledEvents": [
+    "PreCompact",
+    "SubagentStart",
+    "PreToolUse",
+    "PostToolUse"
+  ]
+}

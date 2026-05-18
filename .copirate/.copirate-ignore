@@ -1,0 +1,70 @@
+# Copirate Workspace Ignore Patterns
+#
+# This file works alongside your existing .gitignore to exclude additional files
+# from Copirate workspace analysis while keeping them in your repository.
+#
+# SYNTAX: Uses gitignore-style patterns (same rules as .gitignore)
+# - Patterns are relative to workspace root unless they start with /
+# - Use * for wildcards, ** for recursive directory matching
+# - Use ! to negate/include files that would otherwise be ignored
+# - Lines starting with # are comments
+# - Empty lines are ignored
+#
+# PRECEDENCE: .gitignore rules are checked first, then .copirate-ignore
+# Files ignored by .gitignore are automatically excluded from analysis
+#
+# USE CASES:
+# - Third-party libraries that should stay in repo but not be analyzed
+# - Minified/compiled files that don't need code intelligence
+# - Large vendor directories that would slow down analysis
+# - Legacy code sections that shouldn't influence new development patterns
+#
+# EXAMPLES:
+
+# Third-party JavaScript libraries (keep in repo, exclude from analysis)
+/js/jquery*
+/js/bootstrap*
+/js/vendor/
+/assets/lib/
+/lib/
+node_modules/
+
+# Minified files (typically generated, not useful for analysis)
+*.min.js
+*.min.css
+
+# Build artifacts (usually covered by .gitignore, but explicit here)
+/dist/
+/build/
+/target/
+
+# ColdFusion specific directories
+/CFIDE/
+/WEB-INF/
+
+# CSS frameworks and vendor files
+/css/vendor/
+/css/bootstrap*
+/css/foundation*
+
+# Common vendor directories
+/bower_components/
+/packages/
+
+# Historical archives (reduce stale context and token-heavy search noise)
+/archive/
+/.copirate-shared/archive/
+
+# Temporary and cache files
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+
+# NEGATION EXAMPLES (include files that would otherwise be ignored):
+# !important-vendor-lib.js
+# !custom-bootstrap-overrides.css
+
+# DIRECTORY-SPECIFIC IGNORES (only applies to directories):
+# legacy-code/
+# old-modules/

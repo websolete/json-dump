@@ -1,0 +1,62 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "node .copirate/hooks/copirate-session-start.js",
+        "timeout": 10,
+        "env": {
+          "COPIRATE_AGENT_MODE": "copirate"
+        }
+      }
+    ],
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": "node .copirate/hooks/copirate-bridge-event.js",
+        "timeout": 2,
+        "env": {
+          "COPIRATE_AGENT_MODE": "copirate",
+          "COPIRATE_HOOK_EVENT_NAME": "PreCompact",
+          "COPIRATE_HOOK_BRIDGE_TIMEOUT_MS": "1500"
+        }
+      }
+    ],
+    "SubagentStart": [
+      {
+        "type": "command",
+        "command": "node .copirate/hooks/copirate-bridge-event.js",
+        "timeout": 1,
+        "env": {
+          "COPIRATE_AGENT_MODE": "copirate",
+          "COPIRATE_HOOK_EVENT_NAME": "SubagentStart",
+          "COPIRATE_HOOK_BRIDGE_TIMEOUT_MS": "250"
+        }
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "node .copirate/hooks/copirate-bridge-event.js",
+        "timeout": 1,
+        "env": {
+          "COPIRATE_AGENT_MODE": "copirate",
+          "COPIRATE_HOOK_EVENT_NAME": "PreToolUse",
+          "COPIRATE_HOOK_BRIDGE_TIMEOUT_MS": "300"
+        }
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "node .copirate/hooks/copirate-bridge-event.js",
+        "timeout": 1,
+        "env": {
+          "COPIRATE_AGENT_MODE": "copirate",
+          "COPIRATE_HOOK_EVENT_NAME": "PostToolUse",
+          "COPIRATE_HOOK_BRIDGE_TIMEOUT_MS": "300"
+        }
+      }
+    ]
+  }
+}

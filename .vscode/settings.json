@@ -1,0 +1,16 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#1c8904",
+        "titleBar.activeForeground": "#000000",
+        "titleBar.inactiveBackground": "#1c8904",
+        "titleBar.inactiveForeground": "#000000",
+        "titleBar.border": "#1c8904",
+        "activityBar.background": "#1c8904",
+        "activityBar.foreground": "#000000",
+        "statusBar.debuggingBackground": "#1c8904",
+        "statusBar.debuggingForeground": "#000000",
+        "iLoveWorkSpaceColors": true,
+        "iLoveWorkSpaceRandom": false
+    },
+    "copirate.ui.showWelcomeMessage": false
+}
