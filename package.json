@@ -2,11 +2,16 @@
   "name": "json-dump",
   "publisher": "EdgeInformation",
   "displayName": "JSON Dump",
-  "description": "Inspect JSON selections and files in an interactive cfdump-style webview",
+  "description": "Renders JSON selections and files in an interactive cfdump-style webview",
   "author": {
-    "name": "EdgeInformation"
+    "name": "Kevin Miller"
   },
   "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@devops.webscreen.org:7999/dev/json-dump.git"
+  },
+  "homepage": "https://devops.webscreen.org/projects/DEV/repos/json-dump/browse",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#17324d",
@@ -96,7 +101,8 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile"
+    "pretest": "npm run compile",
+    "package:vsix": "vsce package --allow-missing-repository --baseContentUrl https://devops.webscreen.org/projects/DEV/repos/json-dump/raw/ --baseImagesUrl https://devops.webscreen.org/projects/DEV/repos/json-dump/raw/"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
