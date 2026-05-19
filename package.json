@@ -7,7 +7,15 @@
     "name": "Kevin Miller"
   },
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/websolete/json-dump.git"
+  },
+  "homepage": "https://github.com/websolete/json-dump#readme",
+  "bugs": {
+    "url": "https://github.com/websolete/json-dump/issues"
+  },
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#17324d",
@@ -86,8 +94,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
-    "package:vsix": "vsce package --allow-missing-repository",
-    "publish:marketplace": "vsce publish --allow-missing-repository"
+    "package:vsix": "vsce package",
+    "publish:marketplace": "vsce publish"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

@@ -2,6 +2,11 @@
 
 All notable changes to JSON Dump will be documented in this file.
 
+## 0.0.4
+
+- Added public GitHub repository metadata for Marketplace packaging and project links.
+- Kept the Marketplace preview image in the README now that relative image rewriting can target the public repository.
+
 ## 0.0.3
 
 - Limited dump rendering to `.json` documents and aligned the command surfaces with that behavior.
