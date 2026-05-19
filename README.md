@@ -1,12 +1,12 @@
 # JSON Dump
 
-![JSON Dump preview](images/preview.png)
+JSON Dump turns raw JSON into an interactive dump view inspired by `cfdump`. Open a `.json` document and inspect nested data in a dedicated webview with collapsible tables and switchable key ordering.
 
-JSON Dump turns raw JSON into an interactive dump view inspired by `cfdump`. Open a `.json` file or a selected JSON snippet and inspect nested data in a dedicated webview with collapsible tables and switchable key ordering.
+![JSON Dump preview](images/preview.png)
 
 ## Features
 
-- Open valid JSON from the editor selection or directly from a `.json` file.
+- Open valid `.json` documents directly from Explorer, the active editor tab, or the Command Palette.
 - Render objects as `struct` tables and arrays as indexed tables.
 - Collapse or expand nested structures from the header row or the key column.
 - Toggle between natural key order and `Sort Keys A->Z` from the webview toolbar.
@@ -14,8 +14,8 @@ JSON Dump turns raw JSON into an interactive dump view inspired by `cfdump`. Ope
 
 ## Usage
 
-1. Select JSON in the editor, or right-click a `.json` file in Explorer.
-2. Run `JSON Dump` from the context menu.
+1. Open a `.json` document.
+2. Run `JSON Dump` from Explorer, the editor title menu, or the Command Palette while that document is active.
 3. Explore nested nodes in the webview.
 4. Use `Sort Keys A->Z` or `Natural Key Order` in the editor title while the dump panel is active.
 
@@ -28,27 +28,6 @@ JSON Dump keeps the familiar CF-style dump shape while staying focused on JSON:
 - Boolean values display as `YES` and `NO` for quick scanning.
 - Empty objects and arrays are clearly marked.
 
-## Commands
-
-| Command | Description |
-| --- | --- |
-| `JSON Dump` | Open the selected JSON or target `.json` file in the dump viewer. |
-| `Sort Keys A->Z` | Sort object keys alphabetically in the active dump viewer. |
-| `Natural Key Order` | Restore the original object key order in the active dump viewer. |
-
-## Development
-
-```powershell
-npm install
-npm run compile
-```
-
-To regenerate the Marketplace icon and preview image:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\generate-marketplace-assets.ps1
-```
-
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for release notes.
+Release notes are included with the extension changelog.

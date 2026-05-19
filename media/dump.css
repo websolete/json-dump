@@ -25,6 +25,7 @@ body {
 /* ── Header row (clickable toggle) ──────────────────────── */
 .dump-header {
   cursor: pointer;
+  -webkit-user-select: none;
   user-select: none;
   font-weight: bold;
   font-size: 11px;
@@ -80,7 +81,8 @@ body {
 }
 
 /* ── Scalar values ───────────────────────────────────────── */
-.val-string  { color: #ce9178; }
+.val-string  { color: #ce9178; white-space: pre-wrap; }
+.val-string-empty { font-style: italic; opacity: 0.9; }
 .val-number  { color: #b5cea8; }
 .val-boolean-true  { color: #4ec9b0; font-weight: bold; }
 .val-boolean-false { color: #f44747; font-weight: bold; }

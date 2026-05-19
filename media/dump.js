@@ -11,14 +11,18 @@ function renderDump(container, value) {
 }
 
 function rerender() {
+  if (!rootContainer) {
+    return;
+  }
+
   rootContainer.innerHTML = '';
   rootContainer.appendChild(buildNode(rootData));
 }
 
 window.addEventListener('message', (event) => {
   const msg = event.data;
-  if (msg.command === 'setSort') {
-    sortKeys = msg.alpha;
+  if (msg && msg.command === 'setSort') {
+    sortKeys = Boolean(msg.alpha);
     rerender();
   }
 });
@@ -42,7 +46,11 @@ function buildNode(value) {
   }
 
   if (typeof value === 'string') {
-    return scalar('"' + escapeHtml(value) + '"', 'val-string');
+    if (value === '') {
+      return scalar('(empty string)', 'val-string val-string-empty');
+    }
+
+    return scalar(value, 'val-string');
   }
 
   if (Array.isArray(value)) {
@@ -184,12 +192,4 @@ function scalar(text, cssClass) {
   span.className = cssClass;
   span.textContent = text;
   return span;
-}
-
-function escapeHtml(str) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }

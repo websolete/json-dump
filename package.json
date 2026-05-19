@@ -2,16 +2,12 @@
   "name": "json-dump",
   "publisher": "EdgeInformation",
   "displayName": "JSON Dump",
-  "description": "Renders JSON selections and files in an interactive cfdump-style webview",
+  "description": "Renders .json documents in an interactive cfdump-style webview",
   "author": {
     "name": "Kevin Miller"
   },
-  "version": "0.0.2",
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@devops.webscreen.org:7999/dev/json-dump.git"
-  },
-  "homepage": "https://devops.webscreen.org/projects/DEV/repos/json-dump/browse",
+  "license": "MIT",
+  "version": "0.0.3",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#17324d",
@@ -35,11 +31,6 @@
   ],
   "markdown": "github",
   "pricing": "Free",
-  "activationEvents": [
-    "onCommand:jsonDump.showDump",
-    "onCommand:jsonDump.sortAlpha",
-    "onCommand:jsonDump.sortNatural"
-  ],
   "extensionKind": [
     "ui"
   ],
@@ -74,13 +65,6 @@
           "group": "navigation"
         }
       ],
-      "editor/context": [
-        {
-          "command": "jsonDump.showDump",
-          "when": "editorHasSelection",
-          "group": "navigation"
-        }
-      ],
       "explorer/context": [
         {
           "command": "jsonDump.showDump",
@@ -102,7 +86,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
-    "package:vsix": "vsce package --allow-missing-repository --baseContentUrl https://devops.webscreen.org/projects/DEV/repos/json-dump/raw/ --baseImagesUrl https://devops.webscreen.org/projects/DEV/repos/json-dump/raw/"
+    "package:vsix": "vsce package --allow-missing-repository",
+    "publish:marketplace": "vsce publish --allow-missing-repository"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

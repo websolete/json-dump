@@ -1,0 +1,144 @@
+{
+    "demo": {
+        "title": "JSON Dump Sample for a Wide Marketplace Preview",
+        "version": 1,
+        "flags": {
+            "isActive": true,
+            "isArchived": false,
+            "hasWarnings": true,
+            "notes": null
+        },
+        "summary": {
+            "status": "ready-for-preview-with-expanded-display-values",
+            "tags": [
+                "alpha-preview-segment",
+                "beta-layout-checkpoint",
+                "gamma-screenshot-pass"
+            ],
+            "counts": [
+                3,
+                7,
+                12,
+                24
+            ],
+            "emptyList": [],
+            "emptyObject": {}
+        },
+        "layout": {
+            "columns": [
+                "display name",
+                "workflow state",
+                "priority level",
+                "metrics snapshot"
+            ],
+            "grid": [
+                [
+                    1,
+                    2,
+                    3
+                ],
+                [
+                    4,
+                    5,
+                    6
+                ],
+                [
+                    7,
+                    8,
+                    9
+                ]
+            ]
+        },
+        "sections": [
+            {
+                "key": "overview-summary-section",
+                "label": "Overview Panel With Expanded Summary Values",
+                "items": [
+                    {
+                        "id": "block-a-primary-summary-card",
+                        "state": "ready-for-screenshot-capture",
+                        "priority": 1,
+                        "metrics": {
+                            "count": 3,
+                            "ratio": 0.75,
+                            "trend": [
+                                12,
+                                15,
+                                18
+                            ]
+                        }
+                    },
+                    {
+                        "id": "block-b-secondary-summary-card",
+                        "state": "queued-for-follow-up-render-pass",
+                        "priority": 2,
+                        "metrics": {
+                            "count": 5,
+                            "ratio": 0.42,
+                            "trend": [
+                                5,
+                                8,
+                                13
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "key": "detail-attribute-section",
+                "label": "Detail Panel With Attribute Breakdowns",
+                "items": [
+                    {
+                        "id": "card-100-expanded-detail-tile",
+                        "state": "running-with-balanced-visual-weight",
+                        "priority": 3,
+                        "attributes": {
+                            "color": "deep-signal-blue",
+                            "size": "medium-emphasis-card",
+                            "enabled": true
+                        }
+                    },
+                    {
+                        "id": "card-200-expanded-detail-tile",
+                        "state": "paused-for-secondary-layout-review",
+                        "priority": 4,
+                        "attributes": {
+                            "color": "warm-amber-highlight",
+                            "size": "large-detail-card",
+                            "enabled": false
+                        }
+                    }
+                ]
+            }
+        ],
+        "catalog": {
+            "groups": [
+                {
+                    "code": "grp-001-primary-catalog-group",
+                    "members": [
+                        {
+                            "id": "item-100-preview-entry",
+                            "label": "Sample Item One With Extended Display Label",
+                            "state": "ready-for-preview-rendering"
+                        },
+                        {
+                            "id": "item-200-preview-entry",
+                            "label": "Sample Item Two With Extended Display Label",
+                            "state": "under-review-for-layout-balance"
+                        }
+                    ]
+                },
+                {
+                    "code": "grp-002-secondary-catalog-group",
+                    "members": [
+                        {
+                            "id": "item-300-preview-entry",
+                            "label": "Sample Item Three With Extended Display Label",
+                            "state": "held-for-follow-up-display-pass"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
