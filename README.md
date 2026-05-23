@@ -20,21 +20,6 @@ JSON Dump visualizes raw JSON as an interactive dump view inspired by `cfdump`. 
 4. Explore nested nodes in the webview, collapse or expand nodes by clicking their key columns or headers.
 5. Use `Sort Keys A->Z` or `Natural Key Order` in the editor title while the dump panel is active.
 
-## Maintenance
-
-This repository is managed from GitHub. Local packaging is still available with `npm run package:vsix`, but Marketplace publishing is handled by the `Publish Extension` GitHub Actions workflow.
-
-### One-time setup
-
-1. Add a repository secret named `VSCE_PAT` in GitHub with a Visual Studio Marketplace personal access token.
-2. Keep `package.json` and `CHANGELOG.md` aligned with the version you want to publish.
-
-### Release flow
-
-1. Merge the release commit to `master`.
-2. Create or publish a GitHub release for that version tag, or run the `Publish Extension` workflow manually from the Actions tab.
-3. GitHub Actions packages the VSIX, publishes it to the Marketplace, and attaches the VSIX to the GitHub release when the workflow runs from a release.
-
 ## Changelog
 
 Release notes are included with the extension changelog.
