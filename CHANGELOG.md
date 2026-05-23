@@ -2,6 +2,11 @@
 
 All notable changes to JSON Dump will be documented in this file.
 
+## 0.0.6
+
+- Re-optimized the extension icon to keep the packaged VSIX small for Marketplace distribution.
+- Simplified the README content so the Marketplace listing stays focused on the extension itself.
+
 ## 0.0.5
 
 - Updated the dump panel title to include the active JSON file name, making it easier to distinguish open viewer tabs.
