@@ -2,9 +2,9 @@
 
 All notable changes to JSON Dump will be documented in this file.
 
-## 0.1.0
+## 0.1.1
 
-- Re-optimized the extension icon to keep the packaged VSIX small for Marketplace distribution.
+- Refined Marketplace assets by updating the preview image and cleaning up the icon edge artifacts while keeping the packaged VSIX small.
 - Simplified the README content so the Marketplace listing stays focused on the extension itself.
 
 ## 0.0.5
