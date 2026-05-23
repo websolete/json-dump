@@ -2,6 +2,12 @@
 
 All notable changes to JSON Dump will be documented in this file.
 
+## 0.0.5
+
+- Updated the dump panel title to include the active JSON file name, making it easier to distinguish open viewer tabs.
+- Fixed a webview disposal registration pattern that could surface DisposableStore leak warnings in VS Code debug output.
+- Added explicit TypeScript type configuration for Node and VS Code APIs so editor diagnostics align with the extension runtime.
+
 ## 0.0.4
 
 - Added public GitHub repository metadata for Marketplace packaging and project links.

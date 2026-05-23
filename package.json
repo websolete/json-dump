@@ -7,7 +7,7 @@
     "name": "Kevin Miller"
   },
   "license": "MIT",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/websolete/json-dump.git"
@@ -94,8 +94,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile",
-    "package:vsix": "vsce package",
-    "publish:marketplace": "vsce publish"
+    "package:vsix": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

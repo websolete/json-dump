@@ -43,9 +43,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     let panel: vscode.WebviewPanel;
     try {
+      const panelTitle = `JSON Dump: ${path.basename(targetPath)}`;
+
       panel = vscode.window.createWebviewPanel(
         'jsonDump',
-        'JSON Dump',
+        panelTitle,
         vscode.ViewColumn.One,
         {
           enableScripts: true,
@@ -60,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.Uri.file(path.join(context.extensionPath, 'media', 'dump.js'))
       );
 
-      panel.webview.html = buildHtml(panel.webview, cssUri, jsUri, parsed);
+      panel.webview.html = buildHtml(panel.webview, cssUri, jsUri, panelTitle, parsed);
     } catch {
       vscode.window.showErrorMessage('JSON Dump: Could not open the dump viewer.');
       return;
@@ -74,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
         activePanel = undefined;
         vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
       }
-    }, null, context.subscriptions);
+    });
   });
 
   const sortAlpha = vscode.commands.registerCommand('jsonDump.sortAlpha', () => {
@@ -94,6 +96,7 @@ function buildHtml(
   webview: vscode.Webview,
   cssUri: vscode.Uri,
   jsUri: vscode.Uri,
+  title: string,
   data: unknown
 ): string {
   const nonce = getNonce();
@@ -109,7 +112,7 @@ function buildHtml(
              script-src 'nonce-${nonce}';">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="${cssUri}">
-  <title>JSON Dump</title>
+  <title>${title}</title>
 </head>
 <body>
   <div id="root"></div>
