@@ -4,79 +4,127 @@ import * as path from 'path';
 export function activate(context: vscode.ExtensionContext) {
   let activePanel: vscode.WebviewPanel | undefined;
 
-  const showDump = vscode.commands.registerCommand('jsonDump.showDump', async (uri?: vscode.Uri) => {
-    const editor = vscode.window.activeTextEditor;
-    const document = uri ? undefined : editor?.document;
-    const targetUri = uri ?? document?.uri;
+  const showParsedDump = (sourceName: string, parsed: unknown) => {
+    const panelTitle = `JSON Dump: ${sourceName}`;
 
-    if (!targetUri) {
-      vscode.window.showErrorMessage('JSON Dump: Open a .json document first.');
+    const panel = vscode.window.createWebviewPanel(
+      'jsonDump',
+      panelTitle,
+      vscode.ViewColumn.One,
+      {
+        enableScripts: true,
+        localResourceRoots: [vscode.Uri.file(path.join(context.extensionPath, 'media'))]
+      }
+    );
+
+    const cssUri = panel.webview.asWebviewUri(
+      vscode.Uri.file(path.join(context.extensionPath, 'media', 'dump.css'))
+    );
+    const jsUri = panel.webview.asWebviewUri(
+      vscode.Uri.file(path.join(context.extensionPath, 'media', 'dump.js'))
+    );
+
+    panel.webview.html = buildHtml(panel.webview, cssUri, jsUri, panelTitle, parsed);
+
+    activePanel = panel;
+    void vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
+
+    panel.onDidDispose(() => {
+      if (activePanel === panel) {
+        activePanel = undefined;
+        void vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
+      }
+    });
+  };
+
+  const showRawDump = (sourceName: string, raw: string, invalidMessage: string) => {
+    const parsed = tryParseJson(raw);
+    if (parsed === undefined) {
+      vscode.window.showErrorMessage(invalidMessage);
       return;
     }
 
-    const targetPath = uri ? targetUri.fsPath : document?.fileName ?? '';
-    if (path.extname(targetPath).toLowerCase() !== '.json') {
-      vscode.window.showErrorMessage('JSON Dump: Only .json documents are supported.');
+    try {
+      showParsedDump(sourceName, parsed);
+    } catch {
+      vscode.window.showErrorMessage('JSON Dump: Could not open the dump viewer.');
+    }
+  };
+
+  const showDump = vscode.commands.registerCommand('jsonDump.showDump', async (uri?: vscode.Uri) => {
+    const editor = vscode.window.activeTextEditor;
+    const activeDocument = editor?.document;
+    const document = uri
+      ? activeDocument?.uri.toString() === uri.toString()
+        ? activeDocument
+        : vscode.workspace.textDocuments.find(candidate => candidate.uri.toString() === uri.toString())
+      : activeDocument;
+    const targetUri = uri ?? document?.uri;
+
+    if (!targetUri) {
+      vscode.window.showErrorMessage('JSON Dump: Open a document with valid JSON first.');
       return;
     }
 
     let raw: string;
+    let sourceName: string;
     if (document && document.uri.toString() === targetUri.toString()) {
       raw = document.getText();
+      sourceName = getDocumentLabel(document);
     } else {
+      const targetPath = targetUri.fsPath;
+      if (path.extname(targetPath).toLowerCase() !== '.json') {
+        vscode.window.showErrorMessage('JSON Dump: Only .json files are supported from the explorer.');
+        return;
+      }
+
       try {
         const bytes = await vscode.workspace.fs.readFile(targetUri);
         raw = Buffer.from(bytes).toString('utf8');
+        sourceName = path.basename(targetPath);
       } catch {
         vscode.window.showErrorMessage('JSON Dump: Could not read file.');
         return;
       }
     }
 
-    let parsed: unknown;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      vscode.window.showErrorMessage('JSON Dump: File does not contain valid JSON.');
+    showRawDump(sourceName, raw, 'JSON Dump: Content does not contain valid JSON.');
+  });
+
+  const showSelectionDump = vscode.commands.registerCommand('jsonDump.showSelectionDump', async () => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      vscode.window.showErrorMessage('JSON Dump: Select valid JSON first.');
       return;
     }
 
-    let panel: vscode.WebviewPanel;
-    try {
-      const panelTitle = `JSON Dump: ${path.basename(targetPath)}`;
-
-      panel = vscode.window.createWebviewPanel(
-        'jsonDump',
-        panelTitle,
-        vscode.ViewColumn.One,
-        {
-          enableScripts: true,
-          localResourceRoots: [vscode.Uri.file(path.join(context.extensionPath, 'media'))]
-        }
-      );
-
-      const cssUri = panel.webview.asWebviewUri(
-        vscode.Uri.file(path.join(context.extensionPath, 'media', 'dump.css'))
-      );
-      const jsUri = panel.webview.asWebviewUri(
-        vscode.Uri.file(path.join(context.extensionPath, 'media', 'dump.js'))
-      );
-
-      panel.webview.html = buildHtml(panel.webview, cssUri, jsUri, panelTitle, parsed);
-    } catch {
-      vscode.window.showErrorMessage('JSON Dump: Could not open the dump viewer.');
+    const selection = editor.selections.find(candidate => !candidate.isEmpty);
+    if (!selection) {
+      vscode.window.showErrorMessage('JSON Dump: Select valid JSON first.');
       return;
     }
 
-    activePanel = panel;
-    vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
+    const raw = editor.document.getText(selection);
+    if (!raw.trim()) {
+      vscode.window.showErrorMessage('JSON Dump: Selected text is empty.');
+      return;
+    }
 
-    panel.onDidDispose(() => {
-      if (activePanel === panel) {
-        activePanel = undefined;
-        vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
-      }
-    });
+    showRawDump(
+      `${getDocumentLabel(editor.document)} (selection)`,
+      raw,
+      'JSON Dump: Selected text does not contain valid JSON.'
+    );
+  });
+
+  const showClipboardDump = vscode.commands.registerCommand('jsonDump.showClipboardDump', async () => {
+    const raw = await vscode.env.clipboard.readText();
+    if (!raw.trim()) {
+      vscode.window.showErrorMessage('JSON Dump: Clipboard is empty.');
+      return;
+    }
+
+    showRawDump('Clipboard', raw, 'JSON Dump: Clipboard does not contain valid JSON.');
   });
 
   const sortAlpha = vscode.commands.registerCommand('jsonDump.sortAlpha', () => {
@@ -89,7 +137,19 @@ export function activate(context: vscode.ExtensionContext) {
     activePanel?.webview.postMessage({ command: 'setSort', alpha: false });
   });
 
-  context.subscriptions.push(showDump, sortAlpha, sortNatural);
+  context.subscriptions.push(showDump, showSelectionDump, showClipboardDump, sortAlpha, sortNatural);
+}
+
+function getDocumentLabel(document: vscode.TextDocument): string {
+  return document.isUntitled ? document.fileName : path.basename(document.fileName);
+}
+
+function tryParseJson(raw: string): unknown | undefined {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return undefined;
+  }
 }
 
 function buildHtml(

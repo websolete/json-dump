@@ -2,6 +2,18 @@
 
 All notable changes to JSON Dump will be documented in this file.
 
+## 0.1.3
+
+- Added `JSON Dump: Selection` so valid JSON selected inside any editor can open directly in the dump viewer.
+- Exposed the selection command in editor context menus and the Command Palette when text is selected.
+- Updated release text to reflect the new selection-based workflow alongside full-document and clipboard dumps.
+
+## 0.1.2
+
+- Added support for opening JSON Dump from unsaved editors by validating the in-memory document content instead of requiring a saved `.json` file first.
+- Added a `JSON Dump: Clipboard` command so copied JSON can open directly in the dump viewer.
+- Expanded command availability in editor menus and refreshed Marketplace text to reflect the new unsaved-editor and clipboard workflows.
+
 ## 0.1.1
 
 - Refined Marketplace assets by updating the preview image and cleaning up the icon edge artifacts while keeping the packaged VSIX small.
