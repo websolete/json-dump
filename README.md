@@ -12,6 +12,7 @@ JSON Dump visualizes raw JSON as an interactive dump view inspired by `cfdump`. 
 - Open valid JSON from the clipboard with `JSON Dump: Clipboard`.
 - Renders `struct` and `arrays` as nested tables.
 - Collapse or expand nested structures from the header row or the key column.
+- Expand or collapse every nested structure at once with `Expand All` and `Collapse All` from the editor title while the dump panel is active.
 - Toggle between natural key order and `Sort Keys A->Z` from the editor title while the dump panel is active.
 - Keeps scalar values easy to scan with distinct colors for strings, numbers, booleans, and nulls.
 
@@ -22,7 +23,8 @@ JSON Dump visualizes raw JSON as an interactive dump view inspired by `cfdump`. 
 3. To skip the editor entirely, copy valid JSON and run `JSON Dump: Clipboard` from the Command Palette, editor title context menu, or the editor context menu.
 4. The viewer opens in a new tab.
 5. Explore nested nodes in the webview, collapse or expand nodes by clicking their key columns or headers.
-6. Use `Sort Keys A->Z` or `Natural Key Order` in the editor title while the dump panel is active.
+6. Use `Expand All` or `Collapse All` in the editor title to open or close every nested structure at once.
+7. Use `Sort Keys A->Z` or `Natural Key Order` in the editor title while the dump panel is active.
 
 ## Changelog
 

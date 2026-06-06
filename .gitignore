@@ -3,7 +3,9 @@ out/
 *.vsix
 .copirate/
 .vscode/
-.github/*
+.claude/
+.github/
 !.github/workflows/
 !.github/workflows/**
 schemas/
+.mcp.json

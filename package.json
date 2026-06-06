@@ -7,7 +7,7 @@
     "name": "Kevin Miller"
   },
   "license": "MIT",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/websolete/json-dump.git"
@@ -66,19 +66,39 @@
         "command": "jsonDump.sortNatural",
         "title": "Natural Key Order",
         "icon": "$(list-unordered)"
+      },
+      {
+        "command": "jsonDump.expandAll",
+        "title": "Expand All",
+        "icon": "$(expand-all)"
+      },
+      {
+        "command": "jsonDump.collapseAll",
+        "title": "Collapse All",
+        "icon": "$(collapse-all)"
       }
     ],
     "menus": {
       "editor/title": [
         {
           "command": "jsonDump.sortAlpha",
-          "when": "activeWebviewPanelId == jsonDump && !jsonDump.isSortedAlpha",
-          "group": "navigation"
+          "when": "activeWebviewPanelId == jsonDump",
+          "group": "navigation@1"
         },
         {
           "command": "jsonDump.sortNatural",
-          "when": "activeWebviewPanelId == jsonDump && jsonDump.isSortedAlpha",
-          "group": "navigation"
+          "when": "activeWebviewPanelId == jsonDump",
+          "group": "navigation@2"
+        },
+        {
+          "command": "jsonDump.expandAll",
+          "when": "activeWebviewPanelId == jsonDump",
+          "group": "navigation@3"
+        },
+        {
+          "command": "jsonDump.collapseAll",
+          "when": "activeWebviewPanelId == jsonDump",
+          "group": "navigation@4"
         }
       ],
       "explorer/context": [

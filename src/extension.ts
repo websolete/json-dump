@@ -27,12 +27,10 @@ export function activate(context: vscode.ExtensionContext) {
     panel.webview.html = buildHtml(panel.webview, cssUri, jsUri, panelTitle, parsed);
 
     activePanel = panel;
-    void vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
 
     panel.onDidDispose(() => {
       if (activePanel === panel) {
         activePanel = undefined;
-        void vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
       }
     });
   };
@@ -128,16 +126,22 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   const sortAlpha = vscode.commands.registerCommand('jsonDump.sortAlpha', () => {
-    vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', true);
     activePanel?.webview.postMessage({ command: 'setSort', alpha: true });
   });
 
   const sortNatural = vscode.commands.registerCommand('jsonDump.sortNatural', () => {
-    vscode.commands.executeCommand('setContext', 'jsonDump.isSortedAlpha', false);
     activePanel?.webview.postMessage({ command: 'setSort', alpha: false });
   });
 
-  context.subscriptions.push(showDump, showSelectionDump, showClipboardDump, sortAlpha, sortNatural);
+  const expandAll = vscode.commands.registerCommand('jsonDump.expandAll', () => {
+    activePanel?.webview.postMessage({ command: 'setCollapsed', collapsed: false });
+  });
+
+  const collapseAll = vscode.commands.registerCommand('jsonDump.collapseAll', () => {
+    activePanel?.webview.postMessage({ command: 'setCollapsed', collapsed: true });
+  });
+
+  context.subscriptions.push(showDump, showSelectionDump, showClipboardDump, sortAlpha, sortNatural, expandAll, collapseAll);
 }
 
 function getDocumentLabel(document: vscode.TextDocument): string {

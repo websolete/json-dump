@@ -25,7 +25,38 @@ window.addEventListener('message', (event) => {
     sortKeys = Boolean(msg.alpha);
     rerender();
   }
+  if (msg && msg.command === 'setCollapsed') {
+    setAllCollapsed(Boolean(msg.collapsed));
+  }
 });
+
+/**
+ * Expand or collapse every nested table in the dump. The root table is left
+ * expanded so its top-level keys stay visible while their values collapse.
+ * @param {boolean} collapsed
+ */
+function setAllCollapsed(collapsed) {
+  if (!rootContainer) {
+    return;
+  }
+
+  const rootTable = rootContainer.firstElementChild;
+  const tables = rootContainer.querySelectorAll('table.dump-table');
+  for (const table of tables) {
+    if (table === rootTable) {
+      continue;
+    }
+
+    const header = table.querySelector(':scope > thead .dump-header');
+    const tbody = table.querySelector(':scope > tbody');
+    if (!header || !tbody || tbody.querySelector(':scope > tr > .dump-empty')) {
+      continue;
+    }
+
+    header.classList.toggle('collapsed', collapsed);
+    tbody.style.display = collapsed ? 'none' : '';
+  }
+}
 
 /**
  * Recursively build a DOM node for any JSON value.
