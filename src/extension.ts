@@ -36,12 +36,29 @@ export function activate(context: vscode.ExtensionContext) {
   };
 
   const showRawDump = (sourceName: string, raw: string, invalidMessage: string) => {
-    const parsed = tryParseJson(raw);
-    if (parsed === undefined) {
-      vscode.window.showErrorMessage(invalidMessage);
+    const json = tryParseJson(raw);
+    if (json !== undefined) {
+      openDump(sourceName, json);
       return;
     }
 
+    const jsonl = tryParseJsonl(raw);
+    if (jsonl) {
+      if (jsonl.skipped > 0) {
+        const lineWord = jsonl.skipped === 1 ? 'line' : 'lines';
+        const recordWord = jsonl.records.length === 1 ? 'record' : 'records';
+        vscode.window.showWarningMessage(
+          `JSON Dump: Rendered ${jsonl.records.length} JSONL ${recordWord}, skipped ${jsonl.skipped} invalid ${lineWord}.`
+        );
+      }
+      openDump(sourceName, jsonl.records);
+      return;
+    }
+
+    vscode.window.showErrorMessage(invalidMessage);
+  };
+
+  const openDump = (sourceName: string, parsed: unknown) => {
     try {
       showParsedDump(sourceName, parsed);
     } catch {
@@ -71,8 +88,9 @@ export function activate(context: vscode.ExtensionContext) {
       sourceName = getDocumentLabel(document);
     } else {
       const targetPath = targetUri.fsPath;
-      if (path.extname(targetPath).toLowerCase() !== '.json') {
-        vscode.window.showErrorMessage('JSON Dump: Only .json files are supported from the explorer.');
+      const ext = path.extname(targetPath).toLowerCase();
+      if (ext !== '.json' && ext !== '.jsonl') {
+        vscode.window.showErrorMessage('JSON Dump: Only .json and .jsonl files are supported from the explorer.');
         return;
       }
 
@@ -154,6 +172,43 @@ function tryParseJson(raw: string): unknown | undefined {
   } catch {
     return undefined;
   }
+}
+
+interface JsonlParseResult {
+  records: unknown[];
+  skipped: number;
+}
+
+/**
+ * Parse JSON Lines (one JSON value per line). Blank lines are ignored and
+ * individual invalid lines are skipped so a single malformed record does not
+ * fail the whole dump. Returns undefined when the content is not JSONL at all
+ * (no non-blank lines, or every non-blank line failed to parse).
+ */
+function tryParseJsonl(raw: string): JsonlParseResult | undefined {
+  const records: unknown[] = [];
+  let nonBlank = 0;
+  let skipped = 0;
+
+  for (const line of raw.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (trimmed === '') {
+      continue;
+    }
+
+    nonBlank++;
+    try {
+      records.push(JSON.parse(trimmed));
+    } catch {
+      skipped++;
+    }
+  }
+
+  if (nonBlank === 0 || records.length === 0) {
+    return undefined;
+  }
+
+  return { records, skipped };
 }
 
 function buildHtml(

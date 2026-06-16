@@ -104,14 +104,14 @@
       "explorer/context": [
         {
           "command": "jsonDump.showDump",
-          "when": "resourceExtname == .json",
+          "when": "resourceExtname == .json || resourceExtname == .jsonl",
           "group": "navigation"
         }
       ],
       "editor/title/context": [
         {
           "command": "jsonDump.showDump",
-          "when": "resourceExtname == .json || resourceScheme == untitled || editorLangId == json",
+          "when": "resourceExtname == .json || resourceExtname == .jsonl || resourceScheme == untitled || editorLangId == json || editorLangId == jsonl",
           "group": "navigation"
         },
         {
@@ -127,7 +127,7 @@
       "editor/context": [
         {
           "command": "jsonDump.showDump",
-          "when": "resourceExtname == .json || resourceScheme == untitled || editorLangId == json",
+          "when": "resourceExtname == .json || resourceExtname == .jsonl || resourceScheme == untitled || editorLangId == json || editorLangId == jsonl",
           "group": "navigation"
         },
         {

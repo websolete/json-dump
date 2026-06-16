@@ -1,0 +1,8 @@
+{"event":"session.start","ts":"2026-06-16T09:00:00Z","user":{"id":"u-100","name":"Ada Lovelace","roles":["admin","author"]},"meta":{"ip":"10.0.0.4","agent":"vscode-1.95"}}
+{"event":"file.open","ts":"2026-06-16T09:00:12Z","user":{"id":"u-100","name":"Ada Lovelace"},"file":{"path":"src/extension.ts","lines":209,"language":"typescript"},"flags":{"readonly":false,"dirty":false}}
+{"event":"dump.render","ts":"2026-06-16T09:01:43Z","source":"clipboard","stats":{"nodes":128,"depth":6,"durationMs":12.4},"warnings":[]}
+{"event":"search.run","ts":"2026-06-16T09:03:07Z","query":"jsonl support","results":7,"hits":[{"file":"package.json","score":0.91},{"file":"media/dump.js","score":0.88},{"file":"src/extension.ts","score":0.84}]}
+{"event":"error","ts":"2026-06-16T09:04:55Z","level":"warn","message":"Trailing comma ignored","detail":null,"recovered":true}
+{"event":"session.idle","ts":"2026-06-16T09:15:00Z","user":{"id":"u-100"},"durationMs":654321,"tags":[]}
+{"event":"config.change","ts":"2026-06-16T09:20:18Z","changes":{"jsonDump.sortKeys":{"old":false,"new":true},"jsonDump.theme":{"old":"auto","new":"dark"}},"appliedBy":"u-100"}
+{"event":"session.end","ts":"2026-06-16T09:42:30Z","user":{"id":"u-100","name":"Ada Lovelace"},"summary":{"files":4,"dumps":11,"errors":1},"clean":true}

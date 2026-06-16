@@ -1,12 +1,13 @@
 # JSON Dump
 
-JSON Dump visualizes raw JSON as an interactive dump view inspired by `cfdump`. Open a saved `.json` file, an unsaved editor containing valid JSON, selected JSON text from any editor, or JSON straight from the clipboard and inspect nested data in a dedicated webview with collapsible tables and switchable key ordering.
+JSON Dump visualizes raw JSON as an interactive dump view inspired by `cfdump`. Open a saved `.json` or `.jsonl` file, an unsaved editor containing valid JSON, selected JSON text from any editor, or JSON straight from the clipboard and inspect nested data in a dedicated webview with collapsible tables and switchable key ordering.
 
 ![JSON Dump preview](images/preview.png)
 
 ## Features
 
 - Open saved `.json` files directly from Explorer.
+- Open `.jsonl` (JSON Lines) files; each line is parsed as a record and rendered as an array, with malformed lines skipped rather than failing the whole dump.
 - Open an active unsaved editor as soon as its contents are valid JSON; no save step required.
 - Open selected JSON text from the current editor with `JSON Dump: Selection`.
 - Open valid JSON from the clipboard with `JSON Dump: Clipboard`.
