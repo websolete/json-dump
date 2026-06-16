@@ -9,3 +9,4 @@ out/
 !.github/workflows/**
 schemas/
 .mcp.json
+AGENTS.md
