@@ -2,6 +2,12 @@
 
 All notable changes to JSON Dump will be documented in this file.
 
+## 0.1.5
+
+- Added support for `.jsonl` (JSON Lines) files: each line is parsed as an independent record and rendered through the array view, with blank and malformed lines skipped so a single bad record does not fail the whole dump.
+- Whole-document JSON is parsed first, with JSONL as a content-sniffing fallback, so selection and clipboard sources gain JSONL support without needing a file extension.
+- Opened `.jsonl` to the Explorer and editor menu availability alongside `.json`.
+
 ## 0.1.3
 
 - Added `JSON Dump: Selection` so valid JSON selected inside any editor can open directly in the dump viewer.
